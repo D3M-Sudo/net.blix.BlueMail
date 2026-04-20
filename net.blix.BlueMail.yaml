@@ -13,12 +13,11 @@ finish-args:
   - --socket=wayland
   - --socket=pulseaudio
   - --share=network
-  # FIX: Removed org.freedesktop.DBus to satisfy Flathub linter safety checks
-  - --talk-name=org.freedesktop.secrets
   - --talk-name=org.freedesktop.Notifications
-  - --filesystem=xdg-documents:rw
+  - --talk-name=org.freedesktop.secrets
+  - --filesystem=xdg-documents:rw            
   - --filesystem=xdg-download:rw
-  - --device=dri
+  - --device=dri                            
   - --env=ZYPAK_SPAWN_LATEST_ON_REEXEC=0
 
 modules:
@@ -30,7 +29,7 @@ modules:
       - type: git
         url: https://github.com/plougher/squashfs-tools.git
         tag: 4.5.1
-        commit: 0588665798939b4b0e50f5898687b322a36b3f71
+        commit: afdd63fc386919b4aa40d573b0a6069414d14317 
 
   - name: bluemail
     buildsystem: simple
@@ -58,10 +57,6 @@ modules:
         url: https://api.snapcraft.io/api/v1/snaps/download/ZVlj0qw0GOFd5JgTfL8kk2Y5eIG1IpiH_202.snap
         sha256: 586b0d3cc9b55b89964bdabee49a82988ee51adc6323eb7e48ed3f4fbb850080
         size: 247382016
-        x-checker-data:
-          type: snapcraft
-          name: bluemail
-          channel: stable
       - type: file
         path: bluemail.sh
       - type: file
