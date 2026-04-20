@@ -21,12 +21,13 @@ modules:
   - name: squashfs
     buildsystem: simple
     build-commands:
-      - make XZ_SUPPORT=1 INSTALL_PREFIX=${FLATPAK_DEST} -C squashfs-tools -j ${FLATPAK_BUILDER_N_JOBS}
-        install
+      - make XZ_SUPPORT=1 INSTALL_PREFIX=${FLATPAK_DEST} -C squashfs-tools -j ${FLATPAK_BUILDER_N_JOBS} install
     sources:
       - type: git
         url: https://github.com/plougher/squashfs-tools.git
         tag: 4.5.1
+        # FIX: Updated to the correct commit hash verified by the build log
+        commit: afdd63fc386919b4aa40d573b0a6069414d14317
 
   - name: bluemail
     buildsystem: simple
