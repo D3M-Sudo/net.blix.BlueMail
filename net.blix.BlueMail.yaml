@@ -18,7 +18,6 @@ finish-args:
   - --filesystem=xdg-documents:rw            
   - --filesystem=xdg-download:rw
   - --device=dri
-  - --filesystem=xdg-cache/mesa_shader_cache:create
   - --env=ZYPAK_SPAWN_LATEST_ON_REEXEC=0
 
 modules:
