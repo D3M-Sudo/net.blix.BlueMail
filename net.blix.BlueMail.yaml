@@ -13,12 +13,13 @@ finish-args:
   - --socket=wayland
   - --socket=pulseaudio
   - --share=network
-  - --socket=system-bus              # Required for system bus connectivity and D-Bus stability
-  - --talk-name=org.freedesktop.secrets # Fixes: Is secure encryption available: false
+  # FIX: Removed --socket=system-bus to pass linter. Using granular talk-name instead.
+  - --talk-name=org.freedesktop.secrets
   - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.freedesktop.DBus
   - --filesystem=xdg-documents:rw
   - --filesystem=xdg-download:rw
-  - --device=dri                      # Hardware acceleration for Electron
+  - --device=dri
   - --env=ZYPAK_SPAWN_LATEST_ON_REEXEC=0
 
 modules:
@@ -30,6 +31,8 @@ modules:
       - type: git
         url: https://github.com/plougher/squashfs-tools.git
         tag: 4.5.1
+        # FIX: Added specific commit hash to satisfy Flathub linter requirements
+        commit: 0588665798939b4b0e50f5898687b322a36b3f71
 
   - name: bluemail
     buildsystem: simple
@@ -54,7 +57,7 @@ modules:
       - type: extra-data
         filename: BlueMail.snap
         only-arches: [x86_64]
-        # Updated to version 1.143.42 based on Snapcraft data
+        # Version 1.143.42
         url: https://api.snapcraft.io/api/v1/snaps/download/ZVlj0qw0GOFd5JgTfL8kk2Y5eIG1IpiH_202.snap
         sha256: 586b0d3cc9b55b89964bdabee49a82988ee51adc6323eb7e48ed3f4fbb850080
         size: 247382016
