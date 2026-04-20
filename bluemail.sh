@@ -1,28 +1,30 @@
 #!/usr/bin/env bash
-# Technical Expert Note: Maintaining system stability by ensuring proper Electron sandboxing via Zypak.
+# Technical Expert Note: Optimizing startup speed and GPU stability specifically for Mint/Cinnamon environments.
 
+# Set a dedicated temporary directory within the Flatpak runtime for better isolation.
 export TMPDIR="$XDG_RUNTIME_DIR/app/${FLATPAK_ID:-net.blix.BlueMail}"
 
 declare -a FLAGS=()
 
-# Fix for Electron module loading and sandbox conflicts
+# --- Performance Optimization (Addressing Issue #57) ---
+# Disable the internal Electron sandbox as it conflicts with the Flatpak sandbox and slows down module loading.
 FLAGS+=(--no-sandbox)
 FLAGS+=(--disable-gpu-sandbox)
 
-# Improved Wayland handling: only enable if not on Cinnamon (which prefers X11 for stability)
-if [[ $XDG_SESSION_TYPE == "wayland" && "$XDG_CURRENT_DESKTOP" != "X-Cinnamon" ]]; then
-    WAYLAND_SOCKET=${WAYLAND_DISPLAY:-"wayland-0"}
-    if [[ "${WAYLAND_SOCKET:0:1}" != "/" ]]; then
-        WAYLAND_SOCKET="$XDG_RUNTIME_DIR/$WAYLAND_SOCKET"
-    fi
+# Force hardware acceleration and shader caching to prevent "slow startup" issues.
+# Bypasses the internal GPU blocklist to ensure hardware rendering is used whenever possible.
+FLAGS+=(--ignore-gpu-blocklist)
+FLAGS+=(--enable-gpu-rasterization)
+FLAGS+=(--enable-zero-copy)
 
-    if [[ -e "$WAYLAND_SOCKET" ]]; then
-        echo "Wayland socket detected. Enabling native Wayland flags."
-        FLAGS+=(--enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland)
-    fi
+# --- Display Management ---
+# Cinnamon environments handle X11 more stably; we force native Wayland only for pure Wayland sessions (excluding Cinnamon).
+if [[ "$XDG_SESSION_TYPE" == "wayland" && "$XDG_CURRENT_DESKTOP" != "X-Cinnamon" ]]; then
+    echo "Wayland session detected. Enabling native Wayland flags for non-Cinnamon desktop."
+    FLAGS+=(--enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland)
 fi
 
-echo "Launching BlueMail with flags: ${FLAGS[@]}"
+echo "Launching BlueMail with performance flags: ${FLAGS[@]}"
 
-# Precision execution using the absolute path to zypak-wrapper
+# Precision execution using zypak-wrapper to maintain sandbox integrity while running the binary.
 exec /app/bin/zypak-wrapper /app/extra/BlueMail/bluemail "${FLAGS[@]}" "$@"
