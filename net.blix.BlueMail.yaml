@@ -9,20 +9,23 @@ tags: [proprietary]
 separate-locales: false
 finish-args:
   - --share=ipc
-  - --socket=wayland
   - --socket=fallback-x11
+  - --socket=wayland
   - --socket=pulseaudio
   - --share=network
-  - --filesystem=xdg-documents
-  - --filesystem=xdg-download
+  - --socket=system-bus              # Required for system bus connectivity and D-Bus stability
+  - --talk-name=org.freedesktop.secrets # Fixes: Is secure encryption available: false
   - --talk-name=org.freedesktop.Notifications
+  - --filesystem=xdg-documents:rw
+  - --filesystem=xdg-download:rw
+  - --device=dri                      # Hardware acceleration for Electron
   - --env=ZYPAK_SPAWN_LATEST_ON_REEXEC=0
+
 modules:
   - name: squashfs
     buildsystem: simple
     build-commands:
-      - make XZ_SUPPORT=1 INSTALL_PREFIX=${FLATPAK_DEST} -C squashfs-tools -j ${FLATPAK_BUILDER_N_JOBS}
-        install
+      - make XZ_SUPPORT=1 INSTALL_PREFIX=${FLATPAK_DEST} -C squashfs-tools -j ${FLATPAK_BUILDER_N_JOBS} install
     sources:
       - type: git
         url: https://github.com/plougher/squashfs-tools.git
@@ -31,7 +34,7 @@ modules:
   - name: bluemail
     buildsystem: simple
     build-commands:
-      - install -D apply_extra  "/${FLATPAK_DEST}/bin"
+      - install -D apply_extra "/${FLATPAK_DEST}/bin"
       - install -D bluemail.sh "/${FLATPAK_DEST}/bin/bluemail"
     post-install:
       - install -Dm644 bluemail_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.png
@@ -40,7 +43,6 @@ modules:
       - install -Dm644 bluemail_512.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
       - install -Dm644 net.blix.BlueMail.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
       - install -Dm644 net.blix.BlueMail.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
-
     sources:
       - type: script
         dest-filename: apply_extra
@@ -52,6 +54,7 @@ modules:
       - type: extra-data
         filename: BlueMail.snap
         only-arches: [x86_64]
+        # Updated to version 1.143.42 based on Snapcraft data
         url: https://api.snapcraft.io/api/v1/snaps/download/ZVlj0qw0GOFd5JgTfL8kk2Y5eIG1IpiH_202.snap
         sha256: 586b0d3cc9b55b89964bdabee49a82988ee51adc6323eb7e48ed3f4fbb850080
         size: 247382016
