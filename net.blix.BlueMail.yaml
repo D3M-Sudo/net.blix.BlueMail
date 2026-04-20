@@ -14,10 +14,10 @@ finish-args:
   - --socket=pulseaudio
   - --share=network
   - --talk-name=org.freedesktop.Notifications
-  - --talk-name=org.freedesktop.secrets      # Necessario per salvare le password
-  - --filesystem=xdg-documents:rw            # Accesso completo per allegati
+  - --talk-name=org.freedesktop.secrets
+  - --filesystem=xdg-documents:rw            
   - --filesystem=xdg-download:rw
-  - --device=dri                             # Accelerazione hardware GPU
+  - --device=dri                            
   - --env=ZYPAK_SPAWN_LATEST_ON_REEXEC=0
 
 modules:
@@ -29,7 +29,7 @@ modules:
       - type: git
         url: https://github.com/plougher/squashfs-tools.git
         tag: 4.5.1
-        commit: afdd63fc386919b4aa40d573b0a6069414d14317 # Hash verificato
+        commit: afdd63fc386919b4aa40d573b0a6069414d14317 
 
   - name: bluemail
     buildsystem: simple
