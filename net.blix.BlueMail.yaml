@@ -13,10 +13,9 @@ finish-args:
   - --socket=wayland
   - --socket=pulseaudio
   - --share=network
-  # FIX: Removed --socket=system-bus to pass linter. Using granular talk-name instead.
+  # FIX: Removed org.freedesktop.DBus to satisfy Flathub linter safety checks
   - --talk-name=org.freedesktop.secrets
   - --talk-name=org.freedesktop.Notifications
-  - --talk-name=org.freedesktop.DBus
   - --filesystem=xdg-documents:rw
   - --filesystem=xdg-download:rw
   - --device=dri
@@ -31,7 +30,6 @@ modules:
       - type: git
         url: https://github.com/plougher/squashfs-tools.git
         tag: 4.5.1
-        # FIX: Added specific commit hash to satisfy Flathub linter requirements
         commit: 0588665798939b4b0e50f5898687b322a36b3f71
 
   - name: bluemail
@@ -57,7 +55,6 @@ modules:
       - type: extra-data
         filename: BlueMail.snap
         only-arches: [x86_64]
-        # Version 1.143.42
         url: https://api.snapcraft.io/api/v1/snaps/download/ZVlj0qw0GOFd5JgTfL8kk2Y5eIG1IpiH_202.snap
         sha256: 586b0d3cc9b55b89964bdabee49a82988ee51adc6323eb7e48ed3f4fbb850080
         size: 247382016
