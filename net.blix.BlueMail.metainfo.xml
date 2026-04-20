@@ -5,35 +5,40 @@
   <project_license>LicenseRef-proprietary</project_license>
   <name>BlueMail</name>
   <developer id="net.blix">
-      <name>Blix Inc.</name>
+    <name>Blix Inc.</name>
   </developer>
   <url type="homepage">https://bluemail.me</url>
   <summary>BlueMail is a free, secure, universal email app, capable of managing an unlimited number of mail accounts</summary>
   <description>
-      <p>**NOTE: This wrapper is not verified by, affiliated with, or supported by Blix Inc.**</p>
-      <p>BlueMail for Linux will make you love email again.</p>
-      <p>BlueMail is a secure, fast, beautifully designed, powerful and easy to use email app which is capable of handling an unlimited number of email accounts from any email provider. It follows the great success of BlueMail on other platforms.</p>
-      <p>BlueMail allows you to add any account and supports all email protocols including IMAP, SMTP, Exchange ActiveSync, EWS and POP3.</p>
-      <p>BlueMail will connect directly to your mail server provider without the need for an email proxy. This enables direct connectivity to Gmail, Outlook, Office365, Yahoo, Exchange, Hotmail, AOL, iCloud and other private mail server configurations.</p>
-      <p>Your emails always stay with you, and you’ll never have an account missing as BlueMail's smart configuration adds any account with ease.</p>
-      <p>With unified folders, people-centric filters, sharing emails, clusters, and a truly remarkable user interface and experience, BlueMail is the ultimate mail app for your Linux machine.</p>
-      <p>Blue Mail uses leading industry protocols to secure and protect your data, and is constantly updated to provide the best experience, additional features, bug fixes and enhancements, so be sure to run the latest updates.</p>
+    <p>**NOTE: This wrapper is not verified by, affiliated with, or supported by Blix Inc.**</p>
+    <p>BlueMail for Linux will make you love email again.</p>
+    <p>BlueMail is a secure, fast, beautifully designed, powerful and easy to use email app which is capable of handling an unlimited number of email accounts from any email provider. It follows the great success of BlueMail on other platforms.</p>
+    <p>BlueMail allows you to add any account and supports all email protocols including IMAP, SMTP, Exchange ActiveSync, EWS and POP3.</p>
+    <p>BlueMail will connect directly to your mail server provider without the need for an email proxy. This enables direct connectivity to Gmail, Outlook, Office365, Yahoo, Exchange, Hotmail, AOL, iCloud and other private mail server configurations.</p>
+    <p>Your emails always stay with you, and you’ll never have an account missing as BlueMail's smart configuration adds any account with ease.</p>
+    <p>With unified folders, people-centric filters, sharing emails, clusters, and a truly remarkable user interface and experience, BlueMail is the ultimate mail app for your Linux machine.</p>
+    <p>Blue Mail uses leading industry protocols to secure and protect your data, and is constantly updated to provide the best experience, additional features, bug fixes and enhancements, so be sure to run the latest updates.</p>
   </description>
   <screenshots>
     <screenshot type="default">
-        <image>https://dashboard.snapcraft.io/site_media/appmedia/2022/06/image_2022-06-17_19-01-54.png</image>
+      <image>https://dashboard.snapcraft.io/site_media/appmedia/2022/06/image_2022-06-17_19-01-54.png</image>
+      <caption>Main view of the BlueMail inbox with the unified message list</caption>
     </screenshot>
     <screenshot>
-        <image>https://dashboard.snapcraft.io/site_media/appmedia/2022/06/image_2022-06-17_19-01-54_1.png</image>
+      <image>https://dashboard.snapcraft.io/site_media/appmedia/2022/06/image_2022-06-17_19-01-54_1.png</image>
+      <caption>Email reading pane with quick action buttons</caption>
     </screenshot>
     <screenshot>
-        <image>https://dashboard.snapcraft.io/site_media/appmedia/2022/06/image_2022-06-17_19-01-54_2.png</image>
+      <image>https://dashboard.snapcraft.io/site_media/appmedia/2022/06/image_2022-06-17_19-01-54_2.png</image>
+      <caption>The compose window for writing new secure messages</caption>
     </screenshot>
     <screenshot>
-        <image>https://dashboard.snapcraft.io/site_media/appmedia/2022/06/image_2022-06-17_19-01-55.png</image>
+      <image>https://dashboard.snapcraft.io/site_media/appmedia/2022/06/image_2022-06-17_19-01-55.png</image>
+      <caption>Managing multiple email accounts in the sidebar settings</caption>
     </screenshot>
     <screenshot>
-        <image>https://dashboard.snapcraft.io/site_media/appmedia/2022/06/image_2022-06-17_19-01-55_1.png</image>
+      <image>https://dashboard.snapcraft.io/site_media/appmedia/2022/06/image_2022-06-17_19-01-55_1.png</image>
+      <caption>Calendar integration within the BlueMail application</caption>
     </screenshot>
   </screenshots>
   <launchable type="desktop-id">net.blix.BlueMail.desktop</launchable>
@@ -42,7 +47,12 @@
   </content_rating>
   <releases>
     <release version="1.143.42" date="2026-03-02">
-      <description></description>
+      <description>
+        <ul>
+          <li>Updated to the latest stable version 1.143.42</li>
+          <li>Performance improvements and minor bug fixes</li>
+        </ul>
+      </description>
     </release>
     <release version="1.143.41" date="2026-01-02">
       <description/>
